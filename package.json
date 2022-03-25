@@ -1,0 +1,31 @@
+{
+  "name": "@yarn-monorepo-template/monorepo",
+  "version": "1.0.0",
+  "repository": "https://github.com/sh4nnongoh/yarn-monorepo-template.git",
+  "author": "Shannon <sh4nnongoh@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lint": "yarn fe:lint && yarn be:lint",
+    "fe": "yarn workspace @yarn-monorepo-template/frontend",
+    "fe:start": "yarn fe css-build && yarn fe react-scripts start",
+    "fe:test": "yarn fe test",
+    "fe:build": "yarn fe build",
+    "fe:eject": "yarn fe eject",
+    "fe:lint": "yarn fe lint",
+    "fe:css-build": "yarn fe css-build",
+    "fe:css-watch": "yarn fe css-watch",
+    "cors": "git submodule init && git submodule update && cd packages/cors-anywhere && node server.js",
+    "be": "yarn workspace @yarn-monorepo-template/backend",
+    "be:start": "yarn be start",
+    "be:prod": "yarn be start:prod",
+    "be:build": "yarn be build",
+    "be:clean": "yarn be clean",
+    "be:test": "yarn be test",
+    "be:test:watch": "yarn be test:watch",
+    "be:lint": "yarn be lint"
+  }
+}
