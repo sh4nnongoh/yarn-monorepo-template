@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "yarn fe:lint && yarn be:lint",
     "fe": "yarn workspace @yarn-monorepo-template/frontend",
-    "fe:start": "yarn fe css-build && yarn fe react-scripts start",
+    "fe:start": "yarn fe react-scripts start",
     "fe:test": "yarn fe test",
     "fe:build": "yarn fe build",
     "fe:eject": "yarn fe eject",
