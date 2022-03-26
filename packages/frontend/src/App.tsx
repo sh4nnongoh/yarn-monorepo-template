@@ -2,7 +2,7 @@ import React, {
   FC, ReactElement, useState, useContext
 } from "react";
 import {
-  BrowserRouter as Router, Switch, Route
+  BrowserRouter as Router, Routes, Route
 } from "react-router-dom";
 import {
   Container
@@ -27,20 +27,14 @@ const App: FC = (): ReactElement => {
         >
           <NavBar />
           <Container className="app">
-            <Switch>
-              <Route path="/BTC">
-                <BTC />
+            <Routes>
+              <Route path="/BTC" element={<BTC />} />
+              <Route path="/test-state" element={<TestState value={value} setValue={setValue} />} />
+              <Route path="/test-url-state" element={<TestURLState />}>
+                <Route path=":state" element={<TestURLState />} />
               </Route>
-              <Route path="/test-state">
-                <TestState value={value} setValue={setValue} />
-              </Route>
-              <Route path="/test-url-state/:state?/">
-                <TestURLState />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
+              <Route path="/" element={<Home />} />
+            </Routes>
           </Container>
         </div>
       </Router>

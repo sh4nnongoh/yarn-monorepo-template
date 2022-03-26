@@ -1,5 +1,5 @@
 import React, {
-  createContext, FC, ReactElement, useState
+  createContext, FC, ReactElement, useCallback, useMemo, useState
 } from "react";
 export const DarkModeContext = createContext({
   darkMode: false,
@@ -13,8 +13,10 @@ const DarkModeContextWrapper: FC = ({ children }): ReactElement => {
     localStorage.setItem("DarkMode", JSON.stringify(!darkMode));
     return setDarkMode(!darkMode);
   };
+  const callback = useCallback(toggleDarkMode, [toggleDarkMode]);
+  const value = useMemo(() => ({ darkMode, toggleDarkMode: callback }), [darkMode, callback]);
   return (
-    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <DarkModeContext.Provider value={value}>
       {children}
     </DarkModeContext.Provider>
   );

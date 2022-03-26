@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from "axios";
-import React, { createContext, FC, ReactElement } from "react";
+import React, {
+  createContext, FC, ReactElement, useMemo
+} from "react";
 import config from "../config/config";
 export const AxiosContext = createContext<{axios?: AxiosInstance}>({});
 const AxiosContextWrapper: FC = ({ children }): ReactElement => {
@@ -9,8 +11,9 @@ const AxiosContextWrapper: FC = ({ children }): ReactElement => {
     baseURL: config.axios.baseURL,
     timeout: config.axios.timeout
   });
+  const value = useMemo(() => ({ axios: instance }), [instance]);
   return (
-    <AxiosContext.Provider value={{ axios: instance }}>
+    <AxiosContext.Provider value={value}>
       {children}
     </AxiosContext.Provider>
   );
